@@ -25,8 +25,21 @@ public class PersonController {
     private AddressDao addressDao;
     
     @GetMapping("/")
-    public ModelAndView list(HttpServletRequest request) {
-        List<Person> list = personDao.findAll();
+    public ModelAndView list(HttpServletRequest request,
+            @RequestParam(value="ord", required = false) String ord,
+            @RequestParam(value="filter", required = false) String filter) {
+        List<Person> list;
+        if (filter != null) {
+            list = personDao.filtered("%" + filter + "%");
+        } else if ("fn".equals(ord)) {
+            list = personDao.orderedByFirstName();
+        } else if ("ln".equals(ord)) {
+            list = personDao.orderedByLastName();
+        } else if ("salary".equals(ord)) {
+            list = personDao.orderedBySalary();
+        } else {
+            list = personDao.findAll();
+        }
         ModelAndView maw = new ModelAndView("personList");
         maw.addObject("list", list);
         return maw;

@@ -20,7 +20,7 @@
                 <b>Kontaktas: </b><input name="contact" value="${contact.contact}">
                 <input class="btn" type="submit" value="save">
             </form>
-            <a class="red new" href="./">Cancel</a> <!-- reikia gauti person Id -->
+            <a class="red new" href="./personContactList?id=${personId}">Cancel</a>
         </div>
     </body>
 </html>

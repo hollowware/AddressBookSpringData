@@ -44,13 +44,19 @@ public class ContactController {
     
     @GetMapping("/editContact") 
     public ModelAndView editContact(HttpServletRequest request,
-            @RequestParam(value="id", required = false) Integer id) {
+            @RequestParam(value="id", required = false) Integer id,
+            @RequestParam(value="personId", required = false) Integer personId) {
         ModelAndView maw = new ModelAndView("editContact");
         if (id != null) {
             Contact c = contactDao.getOne(id);
             if (c != null) {
                 maw.addObject("contact", c);
+                maw.addObject("personId", c.getPerson().getId());
+            } else {
+                maw.addObject("personId", personId);
             }
+        } else {
+            maw.addObject("personId", personId);
         }
         return maw;
     }

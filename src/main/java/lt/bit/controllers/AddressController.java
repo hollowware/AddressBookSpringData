@@ -25,11 +25,18 @@ public class AddressController {
     @GetMapping("/personAddressList")
     public ModelAndView personAddressList (
             HttpServletRequest request,
-            @RequestParam(value="id") Integer id) {
+            @RequestParam(value="id") Integer id,
+            @RequestParam(value="filterCity", required = false) String filterCity) {
+        List<Address> addressList;
         Person p = personDao.getOne(id);
-        List<Address> addressList = p.getAddresses();
+        if (filterCity != null) {
+            addressList = addressDao.filteredCity("%" + filterCity + "%");
+        } else {
+            addressList = p.getAddresses();
+        }
         ModelAndView maw = new ModelAndView("personAddressList");
         maw.addObject("addressList", addressList);
+        maw.addObject("personId", id);
         return maw;
     }
     
@@ -44,13 +51,19 @@ public class AddressController {
     
     @GetMapping("/editAddress") 
     public ModelAndView editAddress(HttpServletRequest request,
-            @RequestParam(value="id", required = false) Integer id) {
+            @RequestParam(value="id", required = false) Integer id,
+            @RequestParam(value="personId", required = false) Integer personId){
         ModelAndView maw = new ModelAndView("editAddress");
         if (id != null) {
             Address a = addressDao.getOne(id);
             if (a != null) {
                 maw.addObject("address", a);
+                maw.addObject("personId", a.getPerson().getId());
+            } else {
+                maw.addObject("personId", personId);
             }
+        } else {
+            maw.addObject("personId", personId);
         }
         return maw;
     }

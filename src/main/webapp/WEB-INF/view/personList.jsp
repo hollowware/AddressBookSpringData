@@ -12,6 +12,14 @@
     <body>
         <div class="content">
             <h1>Person List:</h1>
+            <a class="green new" href="./?ord=fn">Order By First Name</a>
+            <a class="green new" href="./?ord=ln">Order By Last Name</a>
+            <a class="green new" href="./?ord=salary">Order By Pinigų</a>
+            <span style="display: block;">Filter by name or last name:</span> 
+            <form action="./">
+                <input style="margin: 10px;" type="text" name="filter">
+                <input class="btn" type="submit" value="FILTER">
+            </form>
             <c:forEach var="p" items="${list}">
                 <span><b>ID: </b>${p.id}</span>
                 <span><b>Vardas: </b>${p.firstName}</span>

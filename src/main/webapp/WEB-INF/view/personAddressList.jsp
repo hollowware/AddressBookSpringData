@@ -11,6 +11,11 @@
     <body>
         <div class="content short-content">
             <h1>Person Address List:</h1>
+            <span>Filter by city:</span>
+            <form action="./personAddressList?personId=${personId}">
+                <input style="margin: 10px;" type="text" name="filterCity">
+                <input class="btn" type="submit" value="FILTER">
+            </form>
             <c:forEach var="a" items="${addressList}">
                 <span><b>ID: </b>${a.id}</span>
                 <span><b>Address: </b>${a.address}</span>
@@ -20,7 +25,7 @@
                 <a class="blue" href="editAddress?id=${a.id}">Edit</a>
                 <hr>
             </c:forEach>
-            <a class="green new" href="editAddress">New</a>
+            <a class="green new" href="editAddress?personId=${personId}">New</a>
             <a class="red new" href="./">Cancel</a> 
         </div>
     </body>

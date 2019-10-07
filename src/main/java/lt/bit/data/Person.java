@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,6 +18,11 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "person")
+@NamedQueries({
+@NamedQuery(name = "Person.byFirstName", query = "select p from Person p order by p.firstName"),
+@NamedQuery(name = "Person.byLastName", query = "select p from Person p order by p.lastName"),
+@NamedQuery(name = "Person.bySalary", query = "select p from Person p order by p.salary")
+})
 public class Person {
 	
         @Id
