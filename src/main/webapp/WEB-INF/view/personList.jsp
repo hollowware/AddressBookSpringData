@@ -33,6 +33,11 @@
                 <hr>
             </c:forEach>
             <a class="green new" href="edit">New</a>
+            <form class="secondForm" action="<c:url value="/logout" />" method="POST">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <button class="btn" type="submit">Log In</button>
+                <button class="btn" type="submit">Log Out</button>
+            </form>
         </div>
     </body>
 </html>

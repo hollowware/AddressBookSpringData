@@ -12,6 +12,7 @@
         <div class="content short-content">
             <h1>Address Edit:</h1>
             <form method="POST" action="saveAddress">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <c:if test="${address != null}">
                     <input type="hidden" name="id" value="${address.id}">
                 </c:if> 

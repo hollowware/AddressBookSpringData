@@ -4,6 +4,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import lt.bit.dao.ContactDao;
 import lt.bit.dao.PersonDao;
+import lt.bit.data.Address;
 import lt.bit.data.Contact;
 import lt.bit.data.Person;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,18 @@ public class ContactController {
     @GetMapping("/personContactList")
     public ModelAndView personContactList (
             HttpServletRequest request,
-            @RequestParam(value="id") Integer id) {
+            @RequestParam(value="id") Integer id,
+            @RequestParam(value="filterType", required = false) String filterType) {
+        List<Contact> contactList;
         Person p = personDao.getOne(id);
-        List<Contact> contactList = p.getContacts();
+        if (filterType != null) {
+            contactList = contactDao.filteredType("%" + filterType + "%");
+        } else {
+            contactList = p.getContacts();
+        }
         ModelAndView maw = new ModelAndView("personContactList");
         maw.addObject("contactList", contactList);
+        maw.addObject("personId", id);
         return maw;
     }
     

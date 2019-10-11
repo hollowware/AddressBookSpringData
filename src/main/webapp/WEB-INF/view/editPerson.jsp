@@ -12,13 +12,14 @@
         <div class="content short-content">
             <h1>Person Edit:</h1>
             <form method="POST" action="save">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <c:if test="${person != null}">
                     <input type="hidden" name="id" value="${person.id}">
                 </c:if> 
                 <b>Vardas: </b><input name="fn" value="${person.firstName}"> 
                 <b>Pavarde: </b><input name="ln" value="${person.lastName}">
                 <b>Gimimo data:</b> <input name="bd" value="<fmt:formatDate value="${person.birthDate}" pattern="yyyy-MM-dd"></fmt:formatDate>"> 
-                <b>Alga: </b><input name="salary" value="${person.salary}">
+                <b>Pinigu: </b><input name="salary" value="${person.salary}">
                 <input class="btn" type="submit" value="save">
             </form>
             <a class="red new" href="./">Cancel</a>

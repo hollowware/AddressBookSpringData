@@ -12,6 +12,7 @@
         <div class="content short-content">
             <h1>Contact Edit:</h1>
             <form method="POST" action="saveContact">
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <c:if test="${contact != null}">
                     <input type="hidden" name="id" value="${contact.id}">
                 </c:if> 

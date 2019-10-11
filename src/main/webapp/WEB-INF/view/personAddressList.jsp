@@ -12,7 +12,8 @@
         <div class="content short-content">
             <h1>Person Address List:</h1>
             <span>Filter by city:</span>
-            <form action="./personAddressList?personId=${personId}">
+            <form action="personAddressList">
+                <input type="hidden" name="id" value="${personId}">
                 <input style="margin: 10px;" type="text" name="filterCity">
                 <input class="btn" type="submit" value="FILTER">
             </form>

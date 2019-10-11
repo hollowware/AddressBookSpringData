@@ -11,6 +11,12 @@
     <body>
         <div class="content short-content">
             <h1>Person Contact List:</h1>
+            <span>Filter by contact type:</span>
+            <form action="personContactList">
+                <input type="hidden" name="id" value="${personId}">
+                <input style="margin: 10px;" type="text" name="filterType">
+                <input class="btn" type="submit" value="FILTER">
+            </form>
             <c:forEach var="c" items="${contactList}">
                 <span><b>ID: </b>${c.id}</span>
                 <span><b>Type: </b>${c.type}</span>

@@ -1,5 +1,4 @@
 html {
-    scroll-behavior: smooth;
     margin: 0;
     padding: 0;
 }
@@ -18,6 +17,10 @@ body {
     width: 100%;
 }
 
+body > .content > form {
+    margin: 0 0 40px 10px;
+}
+
 .short-content {
     height: 100vh;
 }
@@ -25,10 +28,6 @@ body {
 h1 {
     display: inline-block;
     width: 100%;
-    margin: 20px;
-}
-
-form > b {
     margin-left: 10px;
 }
 

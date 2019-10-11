@@ -1,14 +1,14 @@
 package lt.bit.dao;
 
 import java.util.List;
-import lt.bit.data.Address;
+import lt.bit.data.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-public interface AddressDao extends JpaRepository<Address, Integer> {
+public interface UsersDAO extends JpaRepository<Users, Integer> {
     
-    @Query("select a from Address a where a.city like :city")
-    public List<Address> filteredCity(@Param("city") String city);
+    @Query("select u from Users u where u.username = :name")
+    public List<Users> findByName (@Param("name") String name);
     
 }

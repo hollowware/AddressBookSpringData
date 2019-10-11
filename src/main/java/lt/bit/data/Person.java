@@ -1,5 +1,8 @@
 package lt.bit.data;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +26,7 @@ import javax.persistence.TemporalType;
 @NamedQuery(name = "Person.byLastName", query = "select p from Person p order by p.lastName"),
 @NamedQuery(name = "Person.bySalary", query = "select p from Person p order by p.salary")
 })
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Person {
 	
         @Id
@@ -34,13 +38,16 @@ public class Person {
 	private String lastName;
         @Column(name = "birth_date")
         @Temporal(TemporalType.DATE)
+        @JsonFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;
 	private BigDecimal salary;
         @OneToMany(mappedBy = "person")
 //        @JoinColumn(name = "person_id")
+        @JsonIgnore
 	private List<Address> addresses;
         @OneToMany(mappedBy = "person")
 //        @JoinColumn(name = "person_id")
+        @JsonIgnore
 	private List<Contact> contacts;
 	
 	public Person() {
