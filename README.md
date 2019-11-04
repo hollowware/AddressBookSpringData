@@ -4,4 +4,4 @@
 
 ### CRUD using MySQL data base.
 
-#### Used - Spring Data
+#### Used - Spring Data, DAO for data extraction, @Transactional annotations, Spring security.
