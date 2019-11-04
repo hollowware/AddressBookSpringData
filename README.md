@@ -4,4 +4,4 @@
 
 ### CRUD using MySQL data base.
 
-#### Used - (Spring Data)
+#### Used - Spring Data
